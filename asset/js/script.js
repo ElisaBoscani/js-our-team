@@ -52,44 +52,60 @@ const teams = [
 //elementi del form
 const formEl = document.getElementById("form");
 const buttonEl = document.querySelector("button");
+let nameEl = document.getElementById("name");
+const lastNameEl = document.getElementById("lastName");
+const workEl = document.getElementById("work");
+const imgEl = document.getElementById("image");
+//array nuovo
+let newTeam;
 
 //stampare in console le informazioni
-function arrayTeams(array) {
-  for (let i = 0; i < teams.length; i++) {
-    const array = teams[i];
-    console.log(array);
-    for (const key in array) {
-      console.log(key);
-      console.log(array[key]);
-    }
-    //stampo in pagina come immagine una stringa
-    let markup = ` <div>
-   ${array.img} + ${array.name} + ${array.lastName} + ${array.job}
-  </div>`;
-    //stampare in pagina
-    markup = ` <div class="card border-dark mb-4 col-8 ">
-  <img src="${array.img}" alt="" />
-  <h3 class="p-2">  ${array.name}  ${array.lastName}</h3>
-  <span class="p-2">${array.job}</span>
-</div>`;
-    teamContainer.innerHTML += markup;
+
+for (let i = 0; i < teams.length; i++) {
+  const people = teams[i];
+  console.log(people);
+  for (const key in people) {
+    console.log(key);
+    console.log(people[key]);
   }
+
+  createElement(people);
 }
-let newTeam;
+
 formEl.addEventListener("submit", function (e) {
   e.preventDefault();
-  const nameEl = document.getElementById("name").value;
-  const lastNameEl = document.getElementById("lastName").value;
-  const workEl = document.getElementById("work").value;
-  const imgEl = document.getElementById("image").value;
+  ///inserire un nuovi elementi oggetti
   newTeam = {
-    name: nameEl,
-    lastName: lastNameEl,
-    job: workEl,
-    img: imgEl,
+    name: nameEl.value,
+    lastName: lastNameEl.value,
+    job: workEl.value,
+    img: imgEl.value,
   };
-  console.log(nameEl);
   teams.push(newTeam);
   console.log(newTeam);
-  arrayTeams(newTeam);
+  //alerta
+  if (!isNaN(nameEl.value && lastNameEl.value && workEl.value)) {
+    alert("Non puoi inserire numeri");
+  } else {
+    createElement(newTeam);
+  }
+  nameEl.value = "";
+  lastNameEl.value = "";
+  workEl.value = "";
+  imgEl.value = "";
 });
+
+//funzione per creare le card del team
+function createElement(array) {
+  let markup = ` <div>
+  ${array.img} + ${array.name} + ${array.lastName} + ${array.job}
+ </div>`;
+  //stampare in pagina
+  markup = ` <div class="card border-dark mb-4 col-12 col-md-4 col-lg-3 " >
+ <img src="${array.img}" alt="" class="card-img-top"  />
+ <h3 class="p-2">  ${array.name}  ${array.lastName}</h3>
+ <span class="p-2">${array.job}</span>
+</div>`;
+
+  teamContainer.innerHTML += markup;
+}
