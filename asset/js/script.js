@@ -45,3 +45,13 @@ const teams = [
     img: "./asset/img/barbara-ramos-graphic-designer.jpg",
   },
 ];
+
+//stampare in console le informazioni
+for (let i = 0; i < teams.length; i++) {
+  const people = teams[i];
+  console.log(people);
+  for (const key in people) {
+    console.log(key);
+    console.log(people[key]);
+  }
+}
