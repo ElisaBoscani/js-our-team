@@ -6,13 +6,13 @@ Stampare su console, per ogni membro del team,
 le informazioni di nome, ruolo e la stringa della foto
 MILESTONE 2:
 Stampare le stesse informazioni su DOM sottoforma di stringhe */
-
+const teamContainer = document.getElementById("teams_container");
 const teams = [
   {
     name: "Wayne",
     lastName: "Barnett",
     job: "Founder & CEO",
-    img: "./asset/img/wayne-barnett-founder.jpg",
+    img: "./asset/img/wayne-barnett-founder-ceo.jpg",
   },
   {
     name: "Angela",
@@ -54,4 +54,9 @@ for (let i = 0; i < teams.length; i++) {
     console.log(key);
     console.log(people[key]);
   }
+  //stampo in pagina come immagine una stringa
+  const markup = ` <div>
+   ${people.img} + ${people.name} + ${people.lastName} + ${people.job}
+  </div>`;
+  teamContainer.innerHTML += markup;
 }
