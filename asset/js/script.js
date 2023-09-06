@@ -5,7 +5,11 @@ MILESTONE 1:
 Stampare su console, per ogni membro del team, 
 le informazioni di nome, ruolo e la stringa della foto
 MILESTONE 2:
-Stampare le stesse informazioni su DOM sottoforma di stringhe */
+Stampare le stesse informazioni su DOM sottoforma di stringhe
+BONUS 1:
+Trasformare la stringa foto in una immagine effettiva
+BONUS 2:
+Organizzare i singoli membri in card/schede */
 const teamContainer = document.getElementById("teams_container");
 const teams = [
   {
@@ -55,8 +59,13 @@ for (let i = 0; i < teams.length; i++) {
     console.log(people[key]);
   }
   //stampo in pagina come immagine una stringa
-  const markup = ` <div>
+  /*   const markup = ` <div>
    ${people.img} + ${people.name} + ${people.lastName} + ${people.job}
-  </div>`;
+  </div>` */ //stampare in pagina
+  const markup = ` <div class="card border-dark mb-4 ">
+  <img src="${people.img}" alt="" />
+  <h3 class="p-2">  ${people.name}  ${people.lastName}</h3>
+  <span class="p-2">${people.job}</span>
+</div>`;
   teamContainer.innerHTML += markup;
 }
